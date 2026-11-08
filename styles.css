@@ -1,0 +1,281 @@
+/* PACE — video background assignment
+   The hero is the positioning context. The video and shade are layered
+   absolutely behind the content; Flexbox centers the hero message. */
+
+:root {
+  --ink: #171916;
+  --paper: #f1f0e9;
+  --lime: #d7f36a;
+  --muted: rgba(255, 255, 255, 0.72);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 130px clamp(24px, 7vw, 110px) 90px;
+  color: #fff;
+  background: #252b25;
+}
+
+.hero__video,
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__video {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__shade {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(10, 15, 12, .78) 0%, rgba(10, 15, 12, .35) 58%, rgba(10, 15, 12, .12) 100%),
+    linear-gradient(0deg, rgba(10, 15, 12, .45), transparent 32%);
+}
+
+.site-nav {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 88px;
+  padding: 0 clamp(24px, 7vw, 110px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.22);
+}
+
+.brand {
+  font-family: "Oswald", Impact, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.brand span { color: var(--lime); }
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 44px);
+  font-size: .83rem;
+  font-weight: 600;
+}
+
+.site-nav__links a:not(.nav-cta) { color: rgba(255,255,255,.86); }
+.site-nav__links a:hover, .text-link:hover { color: var(--lime); }
+
+.nav-cta {
+  padding: 12px 17px;
+  color: var(--ink);
+  background: var(--lime);
+  border-radius: 2px;
+}
+
+.hero__content {
+  width: min(100%, 1120px);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  color: var(--lime);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.eyebrow__line {
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: currentColor;
+}
+
+.hero h1,
+.training h2,
+.intro h2 {
+  margin: 0;
+  font-family: "Oswald", Impact, sans-serif;
+  font-size: clamp(4.2rem, 10vw, 9.6rem);
+  font-weight: 600;
+  line-height: .91;
+  letter-spacing: -.035em;
+}
+
+.hero h1 span { color: var(--lime); }
+
+.hero__copy {
+  max-width: 470px;
+  margin: 28px 0 30px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 20px;
+  font-size: .82rem;
+  font-weight: 700;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.button:hover { transform: translateY(-3px); }
+.button--light { color: var(--ink); background: var(--lime); }
+.text-link { color: #fff; font-size: .84rem; font-weight: 700; }
+
+.hero__footer {
+  position: absolute;
+  right: clamp(24px, 7vw, 110px);
+  bottom: 28px;
+  left: clamp(24px, 7vw, 110px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255,255,255,.68);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.scroll-note { display: flex; align-items: center; gap: 12px; }
+.scroll-note__bar { width: 34px; height: 1px; background: var(--lime); }
+
+.intro {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  padding: clamp(80px, 12vw, 160px) clamp(24px, 10vw, 160px);
+  overflow: hidden;
+}
+
+.intro__label {
+  color: #7a8075;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
+.intro__body { max-width: 720px; }
+.eyebrow--dark { color: #718b28; }
+
+.intro h2 {
+  font-size: clamp(3.4rem, 7vw, 7rem);
+  color: var(--ink);
+}
+
+.intro h2 em { color: #849b3e; font-style: normal; }
+.intro__body > p:last-child {
+  max-width: 540px;
+  margin: 28px 0 0;
+  color: #62675e;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.intro__mark {
+  position: absolute;
+  right: -20px;
+  bottom: -115px;
+  color: rgba(23,25,22,.045);
+  font-family: "Oswald", Impact, sans-serif;
+  font-size: 25rem;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.training {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  padding: clamp(70px, 9vw, 120px) clamp(24px, 10vw, 160px);
+  color: #fff;
+  background: #20271f;
+}
+
+.training h2 { font-size: clamp(3.6rem, 7vw, 7rem); }
+.training > p {
+  max-width: 370px;
+  margin: 0 0 8px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.8;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 28px clamp(24px, 7vw, 110px);
+  background: var(--lime);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.site-footer .brand span { color: #fff; }
+
+@media (max-width: 700px) {
+  .hero { min-height: 88svh; padding-top: 120px; padding-bottom: 100px; }
+  .site-nav { min-height: 74px; }
+  .site-nav__links { gap: 14px; font-size: .72rem; }
+  .site-nav__links a:not(.nav-cta) { display: none; }
+  .nav-cta { padding: 10px 12px; }
+  .hero h1 { font-size: clamp(4rem, 18vw, 7rem); }
+  .hero__footer span:first-child { display: none; }
+  .hero__footer { font-size: .55rem; }
+  .intro { grid-template-columns: 1fr; gap: 28px; }
+  .training { align-items: flex-start; flex-direction: column; }
+  .site-footer { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}
